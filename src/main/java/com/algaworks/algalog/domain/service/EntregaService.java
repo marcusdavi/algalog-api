@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.algaworks.algalog.domain.exception.EntidadeNaoEncontradaException;
 import com.algaworks.algalog.domain.model.Cliente;
 import com.algaworks.algalog.domain.model.Entrega;
 import com.algaworks.algalog.domain.model.StatusEntrega;
@@ -20,7 +21,7 @@ public class EntregaService {
 
 	private EntregaRepository entregaRepository;
 	private ClienteService clienteService;
-	
+
 	public List<Entrega> listAll() {
 		return entregaRepository.findAll();
 	}
@@ -39,6 +40,12 @@ public class EntregaService {
 
 	public Optional<Entrega> obter(Long id) {
 		return entregaRepository.findById(id);
+	}
+
+	public Entrega buscarEntrega(Long entregaId) {
+		return entregaRepository.findById(entregaId)
+				.orElseThrow(() -> new EntidadeNaoEncontradaException("Entrega não encontrada"));
+
 	}
 
 }
