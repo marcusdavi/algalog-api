@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class CatalogoClienteService {
+public class ClienteService {
 
 	private ClienteRepository clienteRepository;
 
@@ -64,6 +64,11 @@ public class CatalogoClienteService {
 
 		return cliente.isPresent() && !cliente.get().getId().equals(id);
 
+	}
+	
+	public Cliente buscarCliente(Long clienteId) {
+		return clienteRepository.findById(clienteId)
+		.orElseThrow(() -> new NegocioException("Cliente não encontrado"));
 	}
 
 }

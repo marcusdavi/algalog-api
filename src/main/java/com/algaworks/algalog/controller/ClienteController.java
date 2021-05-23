@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.algaworks.algalog.domain.model.Cliente;
-import com.algaworks.algalog.domain.repository.ClienteRepository;
-import com.algaworks.algalog.domain.service.CatalogoClienteService;
+import com.algaworks.algalog.domain.service.ClienteService;
 
 import lombok.AllArgsConstructor;
 
@@ -27,9 +26,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/clientes")
 public class ClienteController {
 	
-	private ClienteRepository clienteRepository;
-	
-	private CatalogoClienteService clienteService;
+	private ClienteService clienteService;
 	
 	@GetMapping()
 	public List<Cliente> lista() {	

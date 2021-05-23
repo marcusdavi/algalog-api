@@ -1,6 +1,6 @@
 package com.algaworks.algalog.exception.handler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,11 +39,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 			campos.add(new Campo(nome, mensagem));
 		}
 		
-		Problema problema = new Problema();
+		Problema problema = buildProblema("Um ou mais campos inválidos", status);
 		problema.setCampos(campos);
-		problema.setStatus(status.value());
-		problema.setDataHora(LocalDateTime.now());
-		problema.setTitulo("Um ou mais campos inválidos.");
 		
 		return handleExceptionInternal(ex, problema, headers, status, request);
 	}
@@ -53,14 +50,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 		
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		
-		Problema problema = new Problema();
-		problema.setStatus(status.value());
-		problema.setDataHora(LocalDateTime.now());
-		problema.setTitulo(ex.getMessage());
+		Problema problema = buildProblema(ex.getMessage(), status);
 		
 		
 		return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
 		
+	}
+
+	private Problema buildProblema(String message, HttpStatus status) {
+		Problema problema = new Problema();
+		problema.setStatus(status.value());
+		problema.setDataHora(OffsetDateTime.now());
+		problema.setTitulo(message);
+		return problema;
 	}
 
 }
