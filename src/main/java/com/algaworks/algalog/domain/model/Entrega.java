@@ -52,6 +52,7 @@ public class Entrega {
 	public Ocorrencia adicionarOcorrencia(String descricao) {
 		Ocorrencia ocorrencia = new Ocorrencia(descricao, this);
 		this.getOcorrencias().add(ocorrencia);
+		
 		return ocorrencia;
 
 	}
