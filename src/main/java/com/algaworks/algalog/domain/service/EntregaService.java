@@ -48,4 +48,12 @@ public class EntregaService {
 
 	}
 
+	public void finalizar(Long idEntrega) {
+		Entrega entrega = this.buscarEntrega(idEntrega);
+
+		entrega.finalizar();
+
+		entregaRepository.save(entrega);
+	}
+
 }
