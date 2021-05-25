@@ -6,8 +6,8 @@ API do curso Mergulho Spring Rest da Algaworks
 2. Importar na IDE de sua escolha
 3. Iniciar a aplicação SpringBoot
 
-* Endereço para os endpoints [[http://localhost:8080/]]
-* Endereço do swagger: [[http://localhost:8080/swagger-ui/]]
+* Endereço para os endpoints <http://localhost:8080/>
+* Endereço do swagger: http://localhost:8080/swagger-ui/
 
 # Endpoints
 
